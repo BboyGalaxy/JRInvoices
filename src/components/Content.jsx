@@ -6,7 +6,7 @@ const Content = () => {
     return (
         <div className="content-info">
                 <Input required clearable bordered label="VIN:" />
-                <Input required clearable bordered label="Brand/Model/Year:"/>
+                <Input required clearable bordered label="Brand/Model/Year:" width="100%"/>
         </ div>
     )
 }
