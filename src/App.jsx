@@ -13,7 +13,7 @@ function App() {
         <Image
           width={75}
           height={75}
-          src="../public/JRI.png"
+          src="/JRI.png"
         />
         <Text h1 >JR Upholstery</Text>
       </Container>
