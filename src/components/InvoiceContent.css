@@ -1,0 +1,22 @@
+.btn-add{
+    color: white;
+    background-color: lawngreen;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: large;
+}
+
+.card-content {
+    margin-bottom: 10px;
+}
+
+.card-btns {
+    width: 100%;
+    padding: 5px;
+}
+
+.card-btns> * {
+    margin: 5px;
+}
