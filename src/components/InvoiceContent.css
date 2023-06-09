@@ -20,3 +20,22 @@
 .card-btns> * {
     margin: 5px;
 }
+
+.details{
+    display: flex;
+    flex-direction: column-reverse;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+
+.details> button {
+    align-self: flex-end;
+
+}
+
+.card-header{
+background-color: azure;
+}

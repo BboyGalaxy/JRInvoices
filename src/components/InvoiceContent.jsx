@@ -30,20 +30,33 @@ const InvoiceContent = () => {
         setDetails([...details, {"index": index, "detail": <ContentDetail key={countDetails} contentIndex={index}/>}])
         console.log(details)
     }
+
+    const handleDeleteDetail = (index) => {
+        const updatedDetails = [...details];
+        updatedDetails.splice(index, 1);
+        setDetails(updatedDetails);
+        console.log(details)
+    }
     return (
         <div>
             <Text h3 b>Content:</Text>
             {components.map((component, contentIndex) => (
                 <Card variant='bordered' key={contentIndex} className='card-content'>
-                    <Card.Header>
+                    <Card.Header className="card-header">
                         {component}
                     </Card.Header>
                     <Card.Divider />
                     <Card.Body>
                         {
-                            details.map((detail) => {
+                            details.map((detail, index) => {
                                 if(detail.index == contentIndex)
-                                    return detail.detail  
+                                    return (
+                                        <div key={index} className='details'>
+                                            {   detail.detail }
+                                        <Button color='error' size='sm' onClick={() => handleDeleteDetail(index)}>Delete</Button>
+                                        </div>
+                                    )
+                                          
                             })
                         }
                     </Card.Body>
