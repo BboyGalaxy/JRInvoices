@@ -9,7 +9,7 @@ const InvoiceInfo = () => {
                     Invoice information:
                 </Text>
             </Card.Header>
-            <Input required clearable bordered label="Invoice number:"/>
+            <Input required clearable bordered label="Invoice number:" type='number' pattern="\d*"/>
             <Input required clearable bordered label="Customer name:" width="100%"/>
             <Input required bordered width="100%" label="Date:" type="date" />
             <Checkbox color="warning">Tax (7%)</Checkbox>

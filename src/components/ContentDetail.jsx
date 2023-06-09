@@ -4,7 +4,7 @@ const ContentDetail = () => {
     return(
         <div className="content-info">
                 <Input required clearable bordered label="Service:" width="100%"/>
-                <Input required clearable bordered label="Amount:" type="number"/>
+                <Input required clearable bordered label="Amount:" type="number" pattern="\d*"/>
         </ div>
 
     )
