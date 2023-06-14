@@ -1,55 +1,68 @@
 import { Button, Card, Container, Row, Spacer, Text } from "@nextui-org/react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContent, addDetail, deleteContent, deleteDetail } from "../tools/InvoiceReducer";
 import Content from "./Content";
 import ContentDetail from "./ContentDetail";
 import "./InvoiceContent.css"
 
 const InvoiceContent = () => {
 
-    const [components, setComponents] = useState([])
+    const [content, setContent] = useState([])
     const [details, setDetails] = useState([])
     const [count, setCount] = useState(0)
     const [countDetails, setCountDetails] = useState(0)
 
+    const dispatch = useDispatch()
+
     const handleAddContent = () => {
         setCount(count + 1);
-        setComponents([...components, <Content key={count} contentIndex={count} />]);
-        console.log(count)
+        setContent([...content,{contentIndex: count, content: <Content key={count} contentIndex={count} />}]);
+        dispatch(addContent({contentIndex: count, vin: "", carDescription: ""}))
 
     }
 
-    const handleDeleteContent = (index) => {
-        const updatedComponents = [...components];
-        updatedComponents.splice(index, 1);
-        setComponents(updatedComponents);
-        console.log(components)
+    const handleDeleteContent = (index, contentIndex) => {
+        const updatedcontents = [...content];
+        var updatedDetails = []
+        details.map((detail) => {
+            if(detail.contentIndex !== contentIndex){
+                updatedDetails.push(detail)
+            }
+        })
+        updatedcontents.splice(index, 1);
+        setContent(updatedcontents);
+        setDetails(updatedDetails)
+        dispatch(deleteContent(contentIndex))
     };
 
-    const handleAddDetail = (index) => {
+    const handleAddDetail = (contentIndex) => {
         setCountDetails(countDetails + 1 )
-        setDetails([...details, {"index": index, "detail": <ContentDetail key={countDetails} contentIndex={index}/>}])
-        console.log(details)
+        setDetails([...details, {contentIndex: contentIndex, index: countDetails, detail: <ContentDetail key={countDetails} contentIndex={contentIndex} index={countDetails}/>}])
+        dispatch(addDetail({contentIndex: contentIndex, index: countDetails, service: "", amount: 0}))
     }
 
     const handleDeleteDetail = (index) => {
         const updatedDetails = [...details];
+        const detailIndex = updatedDetails[index].index
+        
         updatedDetails.splice(index, 1);
         setDetails(updatedDetails);
-        console.log(details)
+        dispatch(deleteDetail(detailIndex))
     }
     return (
         <div>
             <Text h3 b>Content:</Text>
-            {components.map((component, contentIndex) => (
+            {content.map((content, contentIndex) => (
                 <Card variant='bordered' key={contentIndex} className='card-content'>
                     <Card.Header className="card-header">
-                        {component}
+                        {content.content}
                     </Card.Header>
                     <Card.Divider />
                     <Card.Body>
                         {
                             details.map((detail, index) => {
-                                if(detail.index == contentIndex)
+                                if(detail.contentIndex == content.contentIndex)
                                     return (
                                         <div key={index} className='details'>
                                             {   detail.detail }
@@ -63,8 +76,8 @@ const InvoiceContent = () => {
                     <Card.Divider />
                     <Card.Footer>
                         <Row justify="flex-start" gap={2} className="card-btns">
-                            <Button color='success' size='sm' onClick={() => handleAddDetail(contentIndex)}>+ Add details</Button>
-                            <Button color='error' size='sm' onClick={() => handleDeleteContent(contentIndex)}>Delete</Button>
+                            <Button color='success' size='sm' onClick={() => handleAddDetail(content.contentIndex)}>+ Add details</Button>
+                            <Button color='error' size='sm' onClick={() => handleDeleteContent(contentIndex, content.contentIndex)}>Delete</Button>
                         </Row>
                     </Card.Footer>
                 </Card>

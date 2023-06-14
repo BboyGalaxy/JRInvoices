@@ -7,8 +7,10 @@
 }
 
 .total {
-    align-self: flex-end;
-    background-color: rgba(255, 255, 0, 0.091);
+    align-self: flex-start;
+    background-color: rgba(255, 255, 0, 0.091); 
+    width: 60%;
+    font-size: 20px;
 }
 
 
