@@ -1,4 +1,4 @@
-import { Card, Container, Text } from "@nextui-org/react"
+import { Container, Text } from "@nextui-org/react"
 import "./report.css"
 
 
@@ -21,15 +21,15 @@ const Report = () => {
                 </div>
             </header>
             <section className="invoice-info">
-                <div key={invoice.invoiceId} >
-                    <div>
-                        <Text>Invoice</Text>
+                <div key={invoice.invoiceId}  className="invoice-card">
+                    <div className="card-header">
+                        <Text className="invoice-label">Invoice</Text>
                     </div>
-                    <Card.Body>
+                    <div>
                         <Text><span>Invoice number:</span> <span>INV-{invoice.invoiceId}</span></Text>
                         <Text><span>Date:</span> <span>{new Date(invoice.invoiceDate).toLocaleDateString('en-US')}</span></Text>
                         <Text><span>Bill to:</span> <span>{invoice.customerName}</span></Text>
-                    </Card.Body>
+                    </div>
                 </div>
             </section>
             <section className="content-section">
@@ -74,11 +74,11 @@ const Report = () => {
                         </tr>
                         <tr>
                             <td className="bordered">Tax:</td>
-                            <td className="bordered">${invoice.tax}</td>
+                            <td className="bordered">${parseFloat(invoice.tax).toFixed(2)}</td>
                         </tr>
                         <tr>
                             <td className="bordered">Total:</td>
-                            <td className="bordered">{invoice.total}</td>
+                            <td className="bordered">{parseFloat(invoice.total).toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>

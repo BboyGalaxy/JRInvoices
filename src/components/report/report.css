@@ -1,10 +1,9 @@
 
 .report-container {
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: red;
     padding: 10px;
 
 }
@@ -18,6 +17,18 @@
 
 .bold{
     font-weight: bold;
+}
+
+.invoice-label {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 0;
+    text-align: center;
+
+}
+.card-header{
+    background-color: blue;
+    margin: 0px;
 }
 
 
@@ -37,7 +48,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: yellow;
 }
 .content-table {
     width: 100%;
@@ -54,16 +64,19 @@
 
 .invoice-info{
     display: flex;
-    flex-direction: column;
-    background-color: green;
-    height: 200px;
+    flex-direction: row;
+    height: 150px;
     font-weight: bold;
+    line-height: 0px;
 }
 
 .invoice-card {
     align-self: center;
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .total-table {
@@ -77,7 +90,6 @@
 .total-section {
     display: flex;
     flex-direction: column;
-    background-color: blueviolet;
 }
 
 .sign-form {
@@ -85,7 +97,6 @@
     border: 1px solid black;
     position: relative;
     bottom: 0;
-    background-color: burlywood;
 
 }
 
@@ -93,3 +104,4 @@
     width: 100%;
     line-height: 15px;
 }
+
