@@ -2,7 +2,6 @@ import { Button, Container, Spacer } from "@nextui-org/react"
 import InvoiceContent from "./InvoiceContent"
 import InvoiceInfo from "./InvoiceInfo"
 import { useSelector } from "react-redux"
-import { json, renderizarFactura} from '../../public/factura'
 
 const InvoiceForm = () => {
     const invoice = useSelector((state) => state.invoice)
@@ -18,7 +17,6 @@ const InvoiceForm = () => {
     
     return (
         <Container>
-            <Button onPress={() => (renderizarFactura(JSON.stringify(json)))} />
             <form onSubmit={handleSubmit}>
                 <InvoiceInfo />
                 <InvoiceContent />
