@@ -1,18 +1,30 @@
 
 .report-container {
-    width: 90%;
-    height: 3508px;
+    width: 750px;
+    height: 950px;
     display: flex;
     flex-direction: column;
     padding: 10px;
 
+
+}
+
+.company{
+    text-align: center;
 }
 
 .report-header{
-    text-align: center;
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 150px;
 
-    height: 250px;
+}
+
+.logo{
+    width: 150px;
+    height: 100px;
 }
 
 .bold{
@@ -22,7 +34,7 @@
 .invoice-label {
     font-weight: bold;
     font-size: 30px;
-    line-height: 0;
+    line-height: 10px;
     text-align: center;
 
 }
@@ -39,7 +51,13 @@
 }
 
 .company-info{
-    line-height: 7px;
+    line-height: 15px;
+    margin: 0px;
+    padding: 0px;
+    height: 150px;
+}
+.company-info>*{
+    margin: 5px;
 }
 
 
@@ -54,6 +72,7 @@
     margin-bottom: 10px;
     border-collapse: collapse;
     align-self: center;
+    font-size: small;
 
 }
 
@@ -63,7 +82,7 @@
 
 .invoice-info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 150px;
     font-weight: bold;
     line-height: 0px;
@@ -73,9 +92,11 @@
     align-self: center;
     width: 90%;
     margin-bottom: 10px;
+    margin-top: 5px;
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
+    height: 100px;
 }
 
 .total-table {
@@ -94,13 +115,17 @@
 .sign-form {
     padding: 10px;
     border: 1px solid black;
-    position: relative;
-    bottom: 0;
-
+    margin-top: auto;
 }
 
 .invoice-warning{
     width: 100%;
     line-height: 15px;
+    font-size: small;
+    height: 150px;
 }
 
+
+.center{
+    text-align: center;
+}

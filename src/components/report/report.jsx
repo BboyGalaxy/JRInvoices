@@ -1,4 +1,4 @@
-import { Container, Text } from "@nextui-org/react"
+import { Text } from "@nextui-org/react"
 import "./report.css"
 
 
@@ -6,11 +6,16 @@ const Report = () => {
     const invoice = JSON.parse(localStorage.getItem('invoice'))
 
     return (
-        <Container fluid className="report-container">
+        <div className="report-container">
             <header className="report-header">
-                <Text className="company-name">JR Upholstery</Text>
-                <Text className="bold">3190 SW STATE ROAD 7, Suite #9, Miramar, FL 33023</Text>
-                <Text className="bold">Jose Rosario 954-815-1005</Text>
+                <div className="logo">
+                    <img src="/logo.png" alt="logo" className="logo"/>
+                </div>
+                <div className="company">
+                    <Text className="company-name">JR Upholstery</Text>
+                    <Text className="bold">3190 SW STATE ROAD 7, Suite #9, Miramar, FL 33023</Text>
+                    <Text className="bold">Jose Rosario 954-815-1005</Text>
+                </div>
                 <div className="company-info">
                     <Text>Interior Auto, Boat and Furniture Upholstery</Text>
                     <Text>We come to your home or office</Text>
@@ -21,7 +26,28 @@ const Report = () => {
                 </div>
             </header>
             <section className="invoice-info">
-                <div key={invoice.invoiceId}  className="invoice-card">
+                <table className="invoice-card">
+                    <thead>
+                        <tr>
+                            <th className="invoice-label">Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Invoice number:</td>
+                            <td>INV-{invoice.invoiceId}</td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td>{new Date(invoice.invoiceDate).toLocaleDateString('en-US')}</td>
+                        </tr>
+                        <tr>
+                            <td>Bill to:</td>
+                            <td>{invoice.customerName}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {/* <div className="invoice-card">
                     <div className="card-header">
                         <Text className="invoice-label">Invoice</Text>
                     </div>
@@ -30,7 +56,7 @@ const Report = () => {
                         <Text><span>Date:</span> <span>{new Date(invoice.invoiceDate).toLocaleDateString('en-US')}</span></Text>
                         <Text><span>Bill to:</span> <span>{invoice.customerName}</span></Text>
                     </div>
-                </div>
+                </div> */}
             </section>
             <section className="content-section">
                 {console.log(invoice.content)}
@@ -70,15 +96,15 @@ const Report = () => {
                     <tbody>
                         <tr>
                             <td className="bordered"> Subtotal:</td>
-                            <td className="bordered">${invoice.subtotal}</td>
+                            <td className="bordered center">${invoice.subtotal}</td>
                         </tr>
                         <tr>
                             <td className="bordered">Tax:</td>
-                            <td className="bordered">${parseFloat(invoice.tax).toFixed(2)}</td>
+                            <td className="bordered center">${parseFloat(invoice.tax).toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <td className="bordered">Total:</td>
-                            <td className="bordered">{parseFloat(invoice.total).toFixed(2)}</td>
+                            <td className="bordered bold">Total:</td>
+                            <td className="bordered center bold">${parseFloat(invoice.total).toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -99,7 +125,7 @@ const Report = () => {
                     <Text>DATE:_______________________________</Text>
                 </div>
             </footer>
-        </Container>
+        </div>
     )
 }
 
