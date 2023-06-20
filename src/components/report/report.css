@@ -12,6 +12,9 @@
 .company{
     text-align: center;
 }
+.company>*{
+    margin: 5px;   
+}
 
 .report-header{
     font-size: 15px;
@@ -58,6 +61,7 @@
 }
 .company-info>*{
     margin: 5px;
+    text-align: center;
 }
 
 
@@ -78,6 +82,10 @@
 
 .bordered {
     border: 1px solid black;
+}
+
+.half{
+    width: 50%;
 }
 
 .invoice-info{

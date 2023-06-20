@@ -15,12 +15,13 @@ const Report = () => {
                     <Text className="company-name">JR Upholstery</Text>
                     <Text className="bold">3190 SW STATE ROAD 7, Suite #9, Miramar, FL 33023</Text>
                     <Text className="bold">Jose Rosario 954-815-1005</Text>
+                    <Text className="bold">Esmerlin Rosario 786-520-1934</Text>
                 </div>
                 <div className="company-info">
                     <Text>Interior Auto, Boat and Furniture Upholstery</Text>
                     <Text>We come to your home or office</Text>
-                    <Text>Door Panels - Seats - Headliners - Middle Console</Text>
-                    <Text>Carpet Replacement - Auto Upholstery Materials</Text>
+                    <Text>Door Panels - Seats - Headliners - Middle Console - Carpet Replacement</Text>
+                    <Text>Auto Upholstery Materials:</Text>
                     <Text>Leather - Vinyl - Suede - Velour - Tweed</Text>
                     <Text>Free Estimate - Hablamos español</Text>
                 </div>
@@ -66,8 +67,8 @@ const Report = () => {
                         <table key={index} className="content-table">
                             <thead>
                                 <tr>
-                                    <th className="bordered">VIN: {content.vin}</th>
-                                    <th className="bordered">Car Description: {content.carDescription}</th>
+                                    <th className="bordered half">VIN: {content.vin}</th>
+                                    <th className="bordered half">Car Description: {content.carDescription}</th>
                                 </tr>
                                 <tr>
                                     <th className="bordered">Service</th>
