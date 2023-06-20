@@ -12,7 +12,10 @@ const InvoiceForm = () => {
             localStorage.setItem('invoice', JSON.stringify(invoice))
             saveData(invoice)
             window.open("/InvoiceReport")
-            setTimeout(location.reload(), 3000) 
+            setTimeout(location.reload(), 5000) 
+        }
+        else{
+            alert("Please add content to the invoice!")
         }
     }
 
