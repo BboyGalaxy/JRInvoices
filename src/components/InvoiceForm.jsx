@@ -6,13 +6,14 @@ import { supabase } from '../tools/client'
 
 const InvoiceForm = () => {
     const invoice = useSelector((state) => state.invoice)
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if(invoice.total !== 0){
             localStorage.setItem('invoice', JSON.stringify(invoice))
-            saveData(invoice)
+            const saved = await saveData(invoice)
             window.open("/InvoiceReport")
-            setTimeout(location.reload(), 5000) 
+            if(saved)
+                location.reload()
         }
         else{
             alert("Please add content to the invoice!")
@@ -28,7 +29,7 @@ const InvoiceForm = () => {
                 subtotal: invoice.subtotal,
                 total: invoice.total
             })
-            console.log(result)
+            return result
         } catch (error) {
             console.log(error)
         }
