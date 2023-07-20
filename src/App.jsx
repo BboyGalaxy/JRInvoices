@@ -1,7 +1,8 @@
 import { Container, NextUIProvider, Image } from '@nextui-org/react';
 import { Text } from "@nextui-org/react";
+import { Outlet } from 'react-router-dom';
 import "./App.css"
-import InvoicePage from './components/InvoicePage';
+import Menu from './components/menu/Menu';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         />
         <Text h1 >JR Upholstery</Text>
       </Container>
-      <InvoicePage></InvoicePage>
+      <Menu></Menu>
+      <Outlet />
     </NextUIProvider>
   )
 }

@@ -1,0 +1,12 @@
+.navbar {
+    margin: auto;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

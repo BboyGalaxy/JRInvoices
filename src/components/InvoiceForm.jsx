@@ -6,36 +6,75 @@ import { supabase } from '../tools/client'
 
 const InvoiceForm = () => {
     const invoice = useSelector((state) => state.invoice)
+
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        if(invoice.total !== 0){
-            localStorage.setItem('invoice', JSON.stringify(invoice))
-            const saved = await saveData(invoice)
-            window.open("/InvoiceReport")
-            if(saved)
+        try {
+            e.preventDefault()
+            if (invoice.total !== 0) {
+                localStorage.setItem('invoice', JSON.stringify(invoice))
+                await saveData(invoice)
+                window.open("/InvoiceReport")
                 location.reload()
+
+            }
+            else {
+                alert("Please add content to the invoice!")
+            }
+        } catch (error) {
+            console.log(error)
         }
-        else{
-            alert("Please add content to the invoice!")
-        }
+
     }
 
-    const saveData = async(invoice) => {
+    const saveData = (invoice) => {
         try {
-            const result = await supabase.from("invoice").insert({
+          return new Promise((resolve, reject) => {
+            supabase
+              .from("invoice")
+              .insert({
                 invoice_id: invoice.invoiceId,
                 customer_name: invoice.customerName,
                 tax: invoice.tax,
                 subtotal: invoice.subtotal,
-                total: invoice.total
-            })
-            return result
+                total: invoice.total,
+                invoiceDate: invoice.invoiceDate
+              })
+              .then(() => {
+                const contentPromises = invoice.content.map((content) => {
+                  return supabase.from("content").insert({
+                    invoice_id: invoice.invoiceId,
+                    contentIndex: content.contentIndex,
+                    vin: content.vin,
+                    car_description: content.carDescription
+                  });
+                });
+      
+                const detailsPromises = invoice.details.map((detail) => {
+                  return supabase.from("details").insert({
+                    invoice_id: invoice.invoiceId,
+                    contentIndex: detail.contentIndex,
+                    index: detail.index,
+                    service: detail.service,
+                    amount: detail.amount
+                  });
+                });
+      
+                return Promise.all([...contentPromises, ...detailsPromises]);
+              })
+              .then(() => {
+                resolve();
+              })
+              .catch((error) => {
+                reject(error);
+              });
+          });
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    }
+      };
+      
 
-    
+
     return (
         <Container>
             <form onSubmit={handleSubmit}>

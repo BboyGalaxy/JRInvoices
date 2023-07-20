@@ -1,15 +1,16 @@
 import { Text } from "@nextui-org/react"
-import "./report.css"
+import React from 'react'
+import "./report2.css"
 
 
-const Report = () => {
+const Report2 = () => {
     const invoice = JSON.parse(localStorage.getItem('invoice'))
 
     return (
         <div className="report-container">
             <header className="report-header">
                 <div className="logo">
-                    <img src="/logo.png" alt="logo" className="logo"/>
+                    <img src="/logo.png" alt="logo" className="logo" />
                 </div>
                 <div className="company">
                     <Text className="company-name">JR Upholstery</Text>
@@ -48,59 +49,36 @@ const Report = () => {
                         </tr>
                     </tbody>
                 </table>
-                
+
             </section>
             <section className="content-section">
-                {console.log(invoice.content)}
-                {console.log(invoice.details)}
-                {
-                    invoice.content.map((content, index) => (
-                        <table key={index} className="content-table">
-                            <thead>
-                                <tr>
-                                    <th className="bordered half">VIN: {content.vin}</th>
-                                    <th className="bordered half">Car Description: {content.carDescription}</th>
-                                </tr>
-                                <tr>
-                                    <th className="bordered">Service</th>
-                                    <th className="bordered">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    invoice.details.map((detail, detailIndex) => {
-                                        if (detail.contentIndex === content.contentIndex) {
-                                            return (
-                                                <tr key={detailIndex}>
-                                                    <td className="bordered">{detail.service}</td>
-                                                    <td className="bordered">{detail.amount}</td>
-                                                </tr>
-                                            )
-                                        }
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    ))}
-            </section>
-            <section className="total-section">
-                <table className="total-table">
+                <table className="content-table">
                     <tbody>
-                        <tr>
-                            <td className="bordered"> Subtotal:</td>
-                            <td className="bordered center">${invoice.subtotal}</td>
-                        </tr>
-                        <tr>
-                            <td className="bordered">Tax:</td>
-                            <td className="bordered center">${parseFloat(invoice.tax).toFixed(2)}</td>
-                        </tr>
-                        <tr>
-                            <td className="bordered bold">Total:</td>
-                            <td className="bordered center bold">${parseFloat(invoice.total).toFixed(2)}</td>
-                        </tr>
+                        {invoice.content.map((content, index) => (
+                            <React.Fragment key={index}>
+                                <tr>
+                                    <td className="bordered half bold">VIN: {content.vin}</td>
+                                    <td className="bordered half bold">Car Description: {content.carDescription}</td>
+                                </tr>
+                                {invoice.details.map((detail, detailIndex) => {
+                                    if (detail.contentIndex === content.contentIndex) {
+                                        return (
+                                            <tr key={detailIndex}>
+                                                <td className="bordered">{detail.service}</td>
+                                                <td className="bordered">{detail.amount}</td>
+                                            </tr>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            <tr><td className="spacer"></td><td className="spacer"></td></tr>
+                            </React.Fragment>
+                        ))}
                     </tbody>
                 </table>
+
             </section>
+
             <footer className="sign-form">
                 <div className="invoice-warning">
                     <Text className="center">PLEASE PAY FROM THIS INVOICE</Text>
@@ -112,13 +90,31 @@ const Report = () => {
                         collect the herein above described sums, or any part thereof, the purchaser
                         agrees to pay all the costs thereof, including attorney fees.
                     </Text>
-                    <Text>CUSTOMER SIGNATURE: _________________________________________________</Text>
-                    <Text>AUTHORIZED BY: ______________________________________________________</Text>
+                    <Text>CUSTOMER SIGNATURE: _____________________________________________</Text>
+                    <Text>AUTHORIZED BY: __________________________________________________</Text>
                     <Text>DATE:_______________________________</Text>
+                </div>
+                <div className="total-section">
+                    <table className="total-table">
+                        <tbody>
+                            <tr>
+                                <td className="bordered center"> Subtotal:</td>
+                                <td className="bordered center">${invoice.subtotal}</td>
+                            </tr>
+                            <tr>
+                                <td className="bordered center">Tax:</td>
+                                <td className="bordered center">${parseFloat(invoice.tax).toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td className="bordered bold center">Total:</td>
+                                <td className="bordered center bold">${parseFloat(invoice.total).toFixed(2)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </footer>
         </div>
     )
 }
 
-export default Report
+export default Report2
