@@ -110,14 +110,15 @@
 .total-table {
     border: 1px solid black;
     border-collapse: collapse;
-    margin-bottom: 10px;
-    align-self: flex-end;
     width: 40%;
+    height: 150px;
 }
 
 .total-section {
     display: flex;
     flex-direction: column;
+    align-self: flex-end;
+    height: 150px;
 }
 
 .sign-form {

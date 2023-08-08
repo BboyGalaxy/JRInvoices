@@ -13,7 +13,7 @@ const InvoiceForm = () => {
             if (invoice.total !== 0) {
                 localStorage.setItem('invoice', JSON.stringify(invoice))
                 await saveData(invoice)
-                window.open("/InvoiceReport")
+                window.open("/InvoiceReport2")
                 location.reload()
 
             }
