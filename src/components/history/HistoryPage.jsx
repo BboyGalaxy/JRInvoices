@@ -2,7 +2,6 @@ import { Button, Container, Text } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { supabase } from "../../tools/client"
 import './HistoryPage.css'
-import 'dayjs'
 import dayjs from "dayjs"
 
 const HistoryPage = () => {
