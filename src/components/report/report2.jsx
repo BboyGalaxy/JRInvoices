@@ -1,6 +1,7 @@
 import { Text } from "@nextui-org/react"
 import React from 'react'
 import "./report2.css"
+import dayjs from "dayjs"
 
 
 const Report2 = () => {
@@ -41,7 +42,7 @@ const Report2 = () => {
                         </tr>
                         <tr>
                             <td>Date:</td>
-                            <td>{new Date(invoice.invoiceDate).toLocaleDateString('en-US')}</td>
+                            <td>{dayjs(invoice.invoiceDate).format('MM/DD/YYYY')}</td>
                         </tr>
                         <tr>
                             <td>Bill to:</td>

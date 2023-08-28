@@ -1,0 +1,19 @@
+.login-container{
+    width: 450px;
+}
+
+.login-card{
+    width: 350px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.button{
+    margin-top: 15px;
+    width: 90%;
+}
+
+.text{
+    font-weight: bold;
+}

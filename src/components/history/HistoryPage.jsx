@@ -2,6 +2,8 @@ import { Button, Container, Text } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { supabase } from "../../tools/client"
 import './HistoryPage.css'
+import 'dayjs'
+import dayjs from "dayjs"
 
 const HistoryPage = () => {
     const [history, setHistory] = useState([])
@@ -93,7 +95,7 @@ const HistoryPage = () => {
                             <tr key={index}>
                                 <td className="history-cells">{invoice.invoice_id}</td>
                                 <td className="history-cells">{invoice.customer_name}</td>
-                                <td className="history-cells">{new Date(invoice.invoiceDate).toLocaleDateString('en-US')}</td>
+                                <td className="history-cells">{dayjs(invoice.invoiceDate).format('MM/DD/YYYY')}</td>
                                 <td className="history-cells">{invoice.total}</td>
                                 <td className="centerButton history-cells"><Button color="success" auto ghost onPress={() => handlePrint(invoice.invoice_id)}>Print</Button></td>
                             </tr>
