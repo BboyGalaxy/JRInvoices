@@ -126,4 +126,5 @@ export const {
     addDetail,
     deleteContent,
     deleteDetail } = invoiceSlice.actions
+    
 export default invoiceSlice.reducer

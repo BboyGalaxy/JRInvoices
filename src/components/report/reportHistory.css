@@ -1,0 +1,107 @@
+
+.report-container {
+    width: 750px;
+    height: 950px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+
+}
+
+.company{
+    text-align: center;
+}
+.company>*{
+    margin: 5px;   
+}
+
+.report-header{
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 150px;
+
+}
+
+.logo{
+    width: 150px;
+    height: 100px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+
+
+.company-name{
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.company-info{
+    line-height: 15px;
+    margin: 0px;
+    padding: 0px;
+    height: 150px;
+}
+.company-info>*{
+    margin: 5px;
+    text-align: center;
+}
+
+
+
+
+.bordered {
+    border: 1px solid black;
+}
+
+.half{
+    width: 50%;
+}
+
+.center{
+    text-align: center;
+}
+
+.history-info{
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+}
+
+.range{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.history-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #000;
+    margin-top: 5px;
+}
+
+.history-table th, .history-table td {
+    border: 1px solid #000;
+}
+
+/* Hacer que los encabezados estén en negrita */
+.history-table th {
+    font-weight: bold;
+}
+
+.main-title{
+    background-color: aqua;
+    line-height: 0%;
+}

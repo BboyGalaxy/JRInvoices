@@ -1,0 +1,20 @@
+.history-search{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 90px;
+    padding: 10px;
+    gap: 10px;
+
+}
+
+.input-search{
+    width: 170px;
+}
+
+.text{
+
+}

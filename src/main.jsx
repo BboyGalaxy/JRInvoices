@@ -9,6 +9,7 @@ import Report2 from './components/report/report2.jsx'
 import InvoicePage from './components/InvoicePage';
 import HistoryPage from './components/history/HistoryPage'
 import Login from './components/login/Login'
+import ReportHistory from './components/report/reportHistory.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -22,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 </Route>
                 <Route path='/InvoiceReport' element={<Report />} />
                 <Route path='/InvoiceReport2' element={<Report2 />} />
-
+                <Route path='/ReportHistory' element={<ReportHistory />} />
             </Routes>
         </BrowserRouter>
     </Provider>

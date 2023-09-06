@@ -1,43 +1,49 @@
 import { Button, Container, Text } from "@nextui-org/react"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { supabase } from "../../tools/client"
 import './HistoryPage.css'
 import dayjs from "dayjs"
+import HistorySearch from "./HistorySearch"
+import { useDispatch, useSelector } from "react-redux";
+import { setHistoryData } from "../../tools/HistoryReducer"
+import { fetchHistoryAsync } from "../../tools/fetchHistoryAsync";
 
 const HistoryPage = () => {
-    const [history, setHistory] = useState([])
+
+    const dispatch = useDispatch();
+    const history = useSelector((state) => state.history);
+
+
+
     useEffect(() => {
-
-        const fetchHistory = async () => {
-            const { data, error } = await supabase
-                .from('invoice')
-                .select()
-
-            if (!error) {
-                setHistory(data)
+        const fetchData = async () => {
+            try {
+                const data = await fetchHistoryAsync();
+                dispatch(setHistoryData(data));
+            } catch (error) {
+                console.error("Error fetching history:", error);
             }
-        }
+        };
 
-        fetchHistory()
-
-    }, [])
+        fetchData();
+    }, []);
 
     const handlePrint = async (invoice_id) => {
         try {
             const { data, error } = await supabase
                 .from('invoice')
                 .select(`
+            invoice_id,
+            customer_name,
+            invoiceDate,
+            tax,
+            subtotal,
+            total,
+            content!inner(
                 invoice_id,
-                customer_name,
-                invoiceDate,
-                tax,
-                subtotal,
-                total,
-                content!inner(
-                    invoice_id,
-                    contentIndex,
-                    vin,
-                    carDescription : car_description
+                contentIndex,
+                vin,
+                carDescription : car_description
                 ),
                 details!inner(
                     invoice_id,
@@ -45,12 +51,12 @@ const HistoryPage = () => {
                     index,
                     service,
                     amount
-                )
-            `)
-            .eq('invoice_id', invoice_id)
-            .order('contentIndex', { foreignTable: 'content', ascending: true })
-            .order('index', { foreignTable: 'details', ascending: true })
-            console.log(data)
+                    )
+                    `)
+                .eq('invoice_id', invoice_id)
+                .order('contentIndex', { foreignTable: 'content', ascending: true })
+                .order('index', { foreignTable: 'details', ascending: true })
+
             if (!error) {
                 const invoiceData = data[0]
                 const invoice = {
@@ -74,11 +80,27 @@ const HistoryPage = () => {
         }
 
     }
-    if(!history) return <span>Cargando...</span>
+
+    const handlePrintHistory = () => {
+        if (history.historyData.length <= 0) {
+            alert('There is no data to display in this date range!')
+            return
+        }
+
+        localStorage.setItem('history', JSON.stringify(history))
+        window.open("/ReportHistory")
+    }
+
+    if (!history.historyData) return <span>Cargando...</span>
+
     return (
         <Container>
-            <Text h2>History Page</Text>
-            <table className="history">
+            <div className="hp-div">
+                <Text h2>History Page</Text>
+                <Button color="success" auto ghost onPress={() => handlePrintHistory()}>Print History</Button>
+            </div>
+            <HistorySearch />
+            {history.historyData.length > 0 ? (<table className="history" aria-label="Invoice History">
                 <thead>
                     <tr>
                         <th className="history-cells">Invoice</th>
@@ -90,7 +112,7 @@ const HistoryPage = () => {
                 </thead>
                 <tbody>
                     {
-                        history.reverse().map((invoice, index) => (
+                        [...history.historyData].reverse().map((invoice, index) => (
                             <tr key={index}>
                                 <td className="history-cells">{invoice.invoice_id}</td>
                                 <td className="history-cells">{invoice.customer_name}</td>
@@ -101,7 +123,11 @@ const HistoryPage = () => {
                         ))
                     }
                 </tbody>
-            </table>
+
+            </table>) : (
+                <div className="no-history-data">
+                    <span>There is no data to display in this date range!</span>
+                </div>)}
         </Container>
     )
 }
