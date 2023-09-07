@@ -36,7 +36,9 @@ const HistorySearch = () => {
                     className="input-search"
                     bordered
                     aria-label="Select starting date"
-                    onChange={fromHandleChange} />
+                    onChange={fromHandleChange}
+                    value={from} />
+                    
             </div>
             <div>
                 <Text className="text">To:</Text>
@@ -46,7 +48,8 @@ const HistorySearch = () => {
                     className="input-search"
                     bordered
                     aria-label="Select ending date"
-                    onChange={toHandleChange} />
+                    onChange={toHandleChange}
+                    value={to} />
             </div>
         </div>
     )
