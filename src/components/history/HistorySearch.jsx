@@ -28,7 +28,7 @@ const HistorySearch = () => {
 
     return (
         <div className="history-search">
-            <div>
+            <div className="input-div">
                 <Text className="text">From:</Text>
                 <Input
                     name="from"
@@ -40,7 +40,7 @@ const HistorySearch = () => {
                     value={from} />
                     
             </div>
-            <div>
+            <div className="input-div">
                 <Text className="text">To:</Text>
                 <Input
                     name="to"
